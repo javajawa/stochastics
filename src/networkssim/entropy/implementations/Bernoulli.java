@@ -1,7 +1,6 @@
 package networkssim.entropy.implementations;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 import networkssim.entropy.DiscreteProcess;
@@ -9,7 +8,6 @@ import java.util.Random;
 import networkssim.entropy.DiscreteDistribution;
 import networkssim.entropy.Randomised;
 import networkssim.utilities.Combinatorics;
-import sun.nio.cs.ext.Big5;
 
 public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDistribution<Long>
 {
@@ -98,10 +96,9 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 
 	public static double probabilityOf(int trials, double p, int value)
 	{
-		BigDecimal d;
-		d = BigDecimal.valueOf(p).pow(value);
+		BigDecimal d = new BigDecimal(Combinatorics.choose(trials, value));
+		d = d.multiply(BigDecimal.valueOf(p).pow(value));
 		d = d.multiply(BigDecimal.valueOf(1-p).pow(trials - value));
-		d.multiply(new BigDecimal(Combinatorics.choose(trials, value)));
 		return d.doubleValue();
 	}
 }
