@@ -299,7 +299,10 @@ public class SampleValuesTest
 		{
 			s.observed(values[i]);
 			assertEquals("Mean", means[i], s.sampleMean(), 0.01);
-			assertEquals("Variance", variances[i], s.sampleVariance() * i / (i+1), 0.01);
+			if (variances[i] == Double.POSITIVE_INFINITY)
+				assertEquals("Variance", variances[i], s.sampleVariance(), 0.055);
+			else
+				assertEquals("Variance", variances[i], s.sampleVariance() * (i+1)/i, 0.055);
 		}
 	}
 }

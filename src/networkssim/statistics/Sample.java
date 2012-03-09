@@ -42,7 +42,7 @@ public class Sample implements Serializable, networkssim.statistics.Statistic<In
 	public synchronized double sampleVariance()
 	{
 		if (count < 2) return Double.POSITIVE_INFINITY;
-		return sigma_x_squared.doubleValue() / (count - 1) - Math.pow(sampleMean(), 2);
+		return sigma_x_squared.doubleValue() / count - Math.pow(sampleMean(), 2);
 	}
 
 	@Override
