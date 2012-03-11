@@ -4,8 +4,8 @@ import java.util.Random;
 import networkssim.entropy.DiscreteProcess;
 import networkssim.entropy.Distribution;
 import networkssim.entropy.implementations.Bernoulli;
-import networkssim.statistics.Sample;
-import networkssim.statistics.Statistic;
+import networkssim.statistics.QueueStatistic;
+import networkssim.statistics.TimedQueueSample;
 
 public class SlottedAloha extends Thread
 {
@@ -14,7 +14,7 @@ public class SlottedAloha extends Thread
 	private final Random r;
 
 	private final long samples;
-	private final Sample s = new Sample();
+	private final TimedQueueSample s = new TimedQueueSample();
 
 	private int curr = 0;
 
@@ -39,7 +39,7 @@ public class SlottedAloha extends Thread
 
 	public SlottedAloha(DiscreteProcess arrivalProcess,	Distribution<Integer> retransmissionProbability, long samples, Random r)
 	{
-		this(arrivalProcess, retransmissionProbability, samples, r, null, null);
+		this(arrivalProcess, retransmissionProbability, samples, r, null, "Aloha-Thread");
 	}
 
 	public SlottedAloha(DiscreteProcess arrivalProcess,
@@ -53,7 +53,7 @@ public class SlottedAloha extends Thread
 		Distribution<Integer> retransmissionProbability, long samples, Random r,
 		ThreadGroup group)
 	{
-		this(arrivalProcess, retransmissionProbability, samples, r, group, null);
+		this(arrivalProcess, retransmissionProbability, samples, r, group, "Aloha-Thread");
 	}
 
 	public SlottedAloha(DiscreteProcess arrivalProcess,
@@ -67,7 +67,7 @@ public class SlottedAloha extends Thread
 		this.r = r;
 	}
 
-	Statistic<Integer> getBlockingStatistics()
+	public QueueStatistic getBlockingStatistics()
 	{
 		return s.unmodifiableCopy();
 	}
@@ -84,11 +84,22 @@ public class SlottedAloha extends Thread
 			retransmissions = Bernoulli.sample(curr, retransmissionProbability.probabilityOf(curr), r);
 
 			if (arrivals + retransmissions == 1)
-				--curr;
+			{
+				if (retransmissions == 1){
+					--curr;
+					s.observed(0, 1);
+				}
+				else
+				{
+					s.observed(1, 1);
+				}
+			}
 			else
-				curr += arrivals + retransmissions;
-
-			s.observed(curr);
+			{
+				curr += arrivals;
+				s.observed((int)arrivals, 0);
+			}
 		}
 	}
+
 }
