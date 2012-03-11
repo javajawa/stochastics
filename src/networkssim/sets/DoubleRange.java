@@ -1,8 +1,6 @@
 package networkssim.sets;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 public class DoubleRange extends Domain<Double>
 {
@@ -49,7 +47,7 @@ public class DoubleRange extends Domain<Double>
 			@Override
 			public boolean hasNext()
 			{
-				return i + 1 < size();
+				return (i - 1) < size();
 			}
 
 			@Override

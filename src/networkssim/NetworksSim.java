@@ -2,13 +2,12 @@ package networkssim;
 
 import networkssim.entropy.Distribution;
 import networkssim.entropy.implementations.Poisson;
+import networkssim.sets.Domain;
 import networkssim.simulations.SlottedAloha;
 import networkssim.statistics.QueueStatistic;
 import networkssim.sets.DoubleRange;
-/**
- *
- * @author Benedict
- */
+import networkssim.sets.IntRange;
+
 public class NetworksSim
 {
 	/**
@@ -19,7 +18,7 @@ public class NetworksSim
 	{
 		for (Double lambda : new DoubleRange(0.01, 0.25, 0.01))
 		{
-			SlottedAloha sim = new SlottedAloha(new Poisson(lambda), constDist(0.2), 10000);
+			SlottedAloha sim = new SlottedAloha(new Poisson(lambda), constDist(0.2), 50000);
 
 			sim.run();
 			QueueStatistic blockingStatistics = sim.getBlockingStatistics();
