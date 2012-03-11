@@ -2,9 +2,8 @@ package networkssim.statistics;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
-public class RealsSample implements Serializable, networkssim.statistics.Statistic<Double>
+public class RealsSample implements Serializable, Statistic<Double>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -58,12 +57,12 @@ public class RealsSample implements Serializable, networkssim.statistics.Statist
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public networkssim.statistics.Statistic<Integer> unmodifiableCopy()
+	public networkssim.statistics.Statistic<Double> unmodifiableCopy()
 	{
 		return publicExport;
 	}
 
-	private class Statistic implements networkssim.statistics.Statistic<Integer>
+	private class Statistic implements networkssim.statistics.Statistic<Double>
 	{
 		@Override
 		public long sampleCount()
@@ -84,19 +83,19 @@ public class RealsSample implements Serializable, networkssim.statistics.Statist
 		}
 
 		@Override
-		public Integer sampleMinimum()
+		public Double sampleMinimum()
 		{
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
 		@Override
-		public Integer sampleMaximum()
+		public Double sampleMaximum()
 		{
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
 		@Override
-		public void observed(Integer value)
+		public void observed(Double value)
 		{
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
