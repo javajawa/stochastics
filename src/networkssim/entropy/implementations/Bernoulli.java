@@ -1,8 +1,6 @@
 package networkssim.entropy.implementations;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import networkssim.entropy.DiscreteProcess;
 import java.util.Random;
 import networkssim.entropy.DiscreteDistribution;
@@ -58,6 +56,15 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 		return sample(trials, p, Math.random());
 	}
 
+	public static long approximatedSample(int trials, double p, Random r)
+	{
+		if ((trials > 20 && p < 0.05) || (trials > 100 && p * trials < 10))
+		{
+			return new Poisson(p*trials, r).next();
+		}
+		return sample(trials, p, r);
+	}
+
 	@SuppressWarnings("NestedAssignment")
 	private static long sample(int trials, double p, double rand)
 	{
@@ -93,7 +100,7 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 		BigDecimal d = new BigDecimal(Combinatorics.choose(trials, value));
 		d = d.multiply(BigDecimal.valueOf(p).pow(value));
 		d = d.multiply(BigDecimal.valueOf(1-p).pow(trials - value));
-		return d.doubleValue();
+		return Double.parseDouble(d.toString());
 	}
 
 }
