@@ -1,8 +1,6 @@
 package networkssim.entropy;
 
-import java.util.Set;
-
+@SuppressWarnings("MarkerInterface")
 public interface DiscreteDistribution<T extends Comparable<T> > extends Distribution<T>
 {
-	Set<T> domain();
 }

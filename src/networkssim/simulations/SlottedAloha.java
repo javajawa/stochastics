@@ -81,7 +81,7 @@ public class SlottedAloha extends Thread
 		while (s.sampleCount() < samples)
 		{
 			arrivals = arrivalProcess.next();
-			retransmissions = Bernoulli.sample(curr, retransmissionProbability.probabilityOf(curr), r);
+			retransmissions = Bernoulli.sample(curr, retransmissionProbability.valueOf(curr), r);
 
 			if (arrivals + retransmissions == 1)
 			{

@@ -39,20 +39,23 @@ public class NetworksSim
 		return new Distribution<Integer>()
 		{
 			@Override
-			public double probabilityOf(Integer value)
+			public Double valueOf(Integer value)
 			{
 				return Math.E / value;
 			}
+
 			@Override
-			public Integer rangeMin()
+			public Domain<Integer> domain()
 			{
-				return 0;
+				return new IntRange(0, Integer.MAX_VALUE);
 			}
+
 			@Override
-			public Integer rangeMax()
+			public Domain<Double> range()
 			{
-				return Integer.MAX_VALUE;
+				return new DoubleRange(0.0D, 1.0D, Double.MIN_NORMAL);
 			}
+
 		};
 	}
 

@@ -1,12 +1,10 @@
 package networkssim.entropy;
 
-/**
- *
- * @author Benedict
- */
-public interface Distribution<T extends Comparable<T> >
+import networkssim.functions.Function;
+
+@SuppressWarnings("MarkerInterface")
+public interface Distribution<T extends Comparable<T> > extends Function<T, Double>
 {
-	double probabilityOf(T value);
-	T rangeMin();
-	T rangeMax();
+	@Override
+	Double valueOf(T value);
 }

@@ -7,9 +7,12 @@ import networkssim.entropy.DiscreteProcess;
 import java.util.Random;
 import networkssim.entropy.DiscreteDistribution;
 import networkssim.entropy.Randomised;
+import networkssim.sets.Domain;
+import networkssim.sets.DoubleRange;
+import networkssim.sets.IntRange;
 import networkssim.utilities.Combinatorics;
 
-public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDistribution<Long>
+public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDistribution<Integer>
 {
 	private final int trials;
 	private final double p;
@@ -68,30 +71,21 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 	}
 
 	@Override
-	public Set<Long> domain()
+	public Domain<Integer> domain()
 	{
-		Set<Long> s = new HashSet<Long>(trials + 1);
-		for (long i = 0; i <= trials; ++i)
-			s.add(i);
-		return s;
+		return new IntRange(0, trials);
 	}
 
 	@Override
-	public double probabilityOf(Long value)
+	public Domain<Double> range()
+	{
+		return new DoubleRange(0, 1, Double.MIN_NORMAL);
+	}
+
+	@Override
+	public Double valueOf(Integer value)
 	{
 		return probabilities[value.intValue()];
-	}
-
-	@Override
-	public Long rangeMin()
-	{
-		return 0L;
-	}
-
-	@Override
-	public Long rangeMax()
-	{
-		return (long)trials;
 	}
 
 	public static double probabilityOf(int trials, double p, int value)
@@ -101,4 +95,5 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 		d = d.multiply(BigDecimal.valueOf(1-p).pow(trials - value));
 		return d.doubleValue();
 	}
+
 }
