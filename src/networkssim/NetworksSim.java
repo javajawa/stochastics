@@ -1,9 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package networkssim;
 
+import networkssim.entropy.Distribution;
+import networkssim.entropy.implementations.Poisson;
+import networkssim.simulations.SlottedAloha;
+import networkssim.statistics.QueueStatistic;
+import networkssim.sets.DoubleRange;
 /**
  *
  * @author Benedict
@@ -13,12 +14,49 @@ public class NetworksSim
 	/**
 	 * @param args the command line arguments
 	 */
+	@SuppressWarnings({"UseOfSystemOutOrSystemErr", "CallToThreadRun"})
 	public static void main(String[] args)
 	{
+		for (Double lambda : new DoubleRange(0.01, 0.25, 0.01))
+		{
+			SlottedAloha sim = new SlottedAloha(new Poisson(lambda), constDist(0.2), 10000);
 
-		for (int n : new int[] {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 4096, 32786})
-			for (double p : new double[] {0.01, 0.05, 0.1, 0.25, 0.33, 0.5, 0.67, 0.75, 0.9, 0.95, 0.99})
-				System.out.format("new Number[] {%1$6d, %2$6.3fD},\n", n, p);
+			sim.run();
+			QueueStatistic blockingStatistics = sim.getBlockingStatistics();
 
+			System.out.format("l: %5$8.4f\tA: %1$10d\tC: %2$10d\tQm: %3$6.3f\tQv: %4$6.3f\n",
+				blockingStatistics.arrivals(),
+				blockingStatistics.completions(),
+				blockingStatistics.sampleMean(),
+				blockingStatistics.sampleVariance(),
+				lambda
+			);
+		}
+	}
+
+	private static Distribution<Integer> constDist(final double v)
+	{
+		return new Distribution<Integer>()
+		{
+			@Override
+			public double probabilityOf(Integer value)
+			{
+				return Math.E / value;
+			}
+			@Override
+			public Integer rangeMin()
+			{
+				return 0;
+			}
+			@Override
+			public Integer rangeMax()
+			{
+				return Integer.MAX_VALUE;
+			}
+		};
+	}
+
+	private NetworksSim()
+	{
 	}
 }
