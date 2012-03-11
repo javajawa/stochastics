@@ -61,7 +61,7 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 		double culmative = 0.0D;
 		int ret = 0;
 
-		while ((culmative += probabilityOf(trials, p, ret)) < rand)
+		while ((ret < trials) && ((culmative += probabilityOf(trials, p, ret)) <= rand))
 			++ret;
 
 		return (long)ret;
