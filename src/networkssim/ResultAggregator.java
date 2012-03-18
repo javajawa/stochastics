@@ -23,19 +23,19 @@ public class ResultAggregator
 	@SuppressWarnings("UseOfSystemOutOrSystemErr")
 	public static void main(String[] args) throws IOException
 	{
-		final BufferedReader f = new BufferedReader(new FileReader("Z:/tmp/megaout"));
+		final BufferedReader f = new BufferedReader(new FileReader("Z:/tmp/networks4/new-fine.tsv"));
 
 		while (f.ready())
 			process(f.readLine());
 
 		f.close();
 
-		final BufferedWriter w = new BufferedWriter(new FileWriter("Z:/tmp/aggregate"));
+		final BufferedWriter w = new BufferedWriter(new FileWriter("Z:/tmp/networks4/new-fine.tsv"));
 
 		for (Integer i : queue.keySet())
 		{
 			w.append(String.format("%5.4f\t%10.4f\t%10.4f\t%10.4f\t%10.4f\t%10.4f\t%10.4f\n",
-				(double)i/100,
+				(double)i/10000,
 				arrivals.get(i).sampleMean(),
 				Math.sqrt(arrivals.get(i).sampleVariance()) * 1.96,
 				completions.get(i).sampleMean(),
@@ -53,7 +53,7 @@ public class ResultAggregator
 		Matcher m = p.matcher(readLine);
 
 		m.find();
-		int i = ((Double)(Double.valueOf(m.group()) * 100)).intValue();
+		int i = ((Double)(Double.valueOf(m.group()) * 10000)).intValue();
 
 		m.find();
 		mapSample(arrivals, i, Integer.parseInt(m.group()));
