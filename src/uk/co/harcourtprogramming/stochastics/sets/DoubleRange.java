@@ -1,8 +1,9 @@
 package uk.co.harcourtprogramming.stochastics.sets;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
-public class DoubleRange extends Domain<Double>
+public class DoubleRange extends Range<Double>
 {
 	private final double lower;
 	private final double upper;
@@ -77,9 +78,51 @@ public class DoubleRange extends Domain<Double>
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a)
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		// TODO: Implement this properly
+		return (T[])toArray();
+	}
+
+	@Override
+	public Range<Double> subSet(Double fromElement, Double toElement)
+	{
+		if (toElement > upper) throw new IllegalArgumentException("Argument not in range");
+		if (fromElement < lower) throw new IllegalArgumentException("Argument not in range");
+		return new DoubleRange(fromElement, toElement, step);
+	}
+
+	@Override
+	public Range<Double> headSet(Double toElement)
+	{
+		if (toElement > upper) throw new IllegalArgumentException("Argument not in range");
+		return new DoubleRange(lower, toElement, step);
+	}
+
+	@Override
+	public Range<Double> tailSet(Double fromElement)
+	{
+		if (fromElement < lower) throw new IllegalArgumentException("Argument not in range");
+		return new DoubleRange(fromElement, upper, step);
+	}
+
+	@Override
+	public Comparator<Double> comparator()
+	{
+		return null;
+	}
+
+	@Override
+	public Double first()
+	{
+		return lower;
+	}
+
+	@Override
+	public Double last()
+	{
+		return upper;
 	}
 
 }

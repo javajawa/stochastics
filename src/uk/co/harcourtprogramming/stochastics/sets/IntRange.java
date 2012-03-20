@@ -1,5 +1,6 @@
 package uk.co.harcourtprogramming.stochastics.sets;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class IntRange extends Range<Integer>
@@ -82,9 +83,51 @@ public class IntRange extends Range<Integer>
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a)
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		// TODO: Implement this properly
+		return (T[])toArray();
+	}
+
+	@Override
+	public Range<Integer> subSet(Integer fromElement, Integer toElement)
+	{
+		if (toElement > upper) throw new IllegalArgumentException("Argument not in range");
+		if (fromElement < lower) throw new IllegalArgumentException("Argument not in range");
+		return new IntRange(fromElement, toElement, step);
+	}
+
+	@Override
+	public Range<Integer> headSet(Integer toElement)
+	{
+		if (toElement > upper) throw new IllegalArgumentException("Argument not in range");
+		return new IntRange(lower, toElement, step);
+	}
+
+	@Override
+	public Range<Integer> tailSet(Integer fromElement)
+	{
+		if (fromElement < lower) throw new IllegalArgumentException("Argument not in range");
+		return new IntRange(fromElement, upper, step);
+	}
+
+	@Override
+	public Comparator<Integer> comparator()
+	{
+		return null;
+	}
+
+	@Override
+	public Integer first()
+	{
+		return lower;
+	}
+
+	@Override
+	public Integer last()
+	{
+		return upper;
 	}
 
 }
