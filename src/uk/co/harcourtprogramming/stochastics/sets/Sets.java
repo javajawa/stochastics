@@ -5,6 +5,9 @@ import java.util.Set;
 
 public final class Sets
 {
+	public final static Range<Double> REALS =
+		new ContinuousDoubleRange(Double.MIN_VALUE, Double.MAX_VALUE);
+
 	private Sets()
 	{
 		// Nothing to see here. Move along, citizen!
