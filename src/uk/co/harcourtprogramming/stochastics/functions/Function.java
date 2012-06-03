@@ -6,5 +6,5 @@ public interface Function<X,Y>
 {
 	Y valueOf(X value);
 	Domain<X> domain();
-	Domain<Y> range();
+	Domain<Y> image();
 }

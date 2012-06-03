@@ -84,7 +84,7 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 	}
 
 	@Override
-	public Domain<Double> range()
+	public Domain<Double> image()
 	{
 		return new DoubleRange(0, 1, Double.MIN_NORMAL);
 	}
