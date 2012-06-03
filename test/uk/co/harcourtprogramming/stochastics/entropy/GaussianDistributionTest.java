@@ -263,7 +263,7 @@ public class GaussianDistributionTest
 	{
 		this.mean = mean;
 		this.variance = variance;
-		this.total = 500000 * (int)(1 + Math.log1p(variance) / 2) * (int)(1 + 2 / Math.log1p(mean));
+		this.total = 100000 * (int)(1 + Math.log1p(variance)) * (int)(1 + 2 / Math.log1p(mean));
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class GaussianDistributionTest
 		}
 		svar -= smean * smean;
 
-		double dmean = Math.sqrt(0.02 * mean);
+		double dmean = Math.sqrt(0.02 * mean * Math.log1p(variance));
 		double dvar  = Math.sqrt(0.02 * variance * Math.log1p(variance));
 
 		try
