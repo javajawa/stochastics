@@ -1,6 +1,5 @@
 package uk.co.harcourtprogramming.stochastics.entropy;
 
-import uk.co.harcourtprogramming.stochastics.entropy.DiscreteProcess;
 import uk.co.harcourtprogramming.stochastics.entropy.implementations.Gaussian;
 import java.util.Map.Entry;
 import java.util.Map;
@@ -274,20 +273,20 @@ new Number[] {32786.000D, 32786.000D},
 	@SuppressWarnings("UseOfSystemOutOrSystemErr")
 	public void testDistribution()
 	{
-		DiscreteProcess instance = new Gaussian(mean, variance);
+		Process instance = new Gaussian(mean, variance);
 
-		Map<Long, Integer> counts = new HashMap<Long, Integer>();
+		Map<Double, Integer> counts = new HashMap<Double, Integer>();
 
 		for (int i = 0; i < total; ++i)
 		{
-			long v = instance.next();
+			double v = instance.next().doubleValue();
 			counts.put(v, 1 + (counts.containsKey(v) ? counts.get(v) : 0) );
 		}
 
 		double smean = 0;
 		double svar = 0;
 
-		for (Entry<Long, Integer> e : counts.entrySet())
+		for (Entry<Double, Integer> e : counts.entrySet())
 		{
 			smean += e.getKey()            * (double)e.getValue() / total;
 			svar  += e.getKey()*e.getKey() * (double)e.getValue() / total;

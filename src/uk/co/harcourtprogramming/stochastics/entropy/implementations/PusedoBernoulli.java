@@ -1,18 +1,20 @@
 package uk.co.harcourtprogramming.stochastics.entropy.implementations;
-import uk.co.harcourtprogramming.stochastics.entropy.implementations.Gaussian;
+
 import java.util.Random;
+import uk.co.harcourtprogramming.stochastics.entropy.DiscreteProcess;
 /**
  *
  * @author Benedict
  */
-public class PusedoBernoulli extends Gaussian
+public class PusedoBernoulli implements DiscreteProcess
 {
 	public final long n;
+	private final Gaussian inner;
 
 	public PusedoBernoulli(long trials, double p, Random r)
 	{
-		super(trials * p, trials * p * (1-p), r);
 		if (p < 0 || p > 1) throw new IllegalArgumentException("P must be betweeen 0 and 1");
+		inner = new Gaussian(trials * p, trials * p * (1-p), r);
 		this.n = trials;
 	}
 
@@ -21,7 +23,7 @@ public class PusedoBernoulli extends Gaussian
 	{
 		long l = -1;
 		while (l < 0 || l > n)
-			l = super.next();
+			l = inner.next().longValue();
 		return l;
 	}
 }

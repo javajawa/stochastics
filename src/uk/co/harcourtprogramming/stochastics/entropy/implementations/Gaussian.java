@@ -1,12 +1,13 @@
 package uk.co.harcourtprogramming.stochastics.entropy.implementations;
+
 import java.util.Random;
-import uk.co.harcourtprogramming.stochastics.entropy.DiscreteProcess;
+import uk.co.harcourtprogramming.stochastics.entropy.Process;
 import uk.co.harcourtprogramming.stochastics.entropy.Randomised;
 /**
  *
  * @author Benedict
  */
-public class Gaussian extends Randomised implements DiscreteProcess
+public class Gaussian extends Randomised implements Process
 {
 	private final double mean;
 	private final double variance;
@@ -26,8 +27,8 @@ public class Gaussian extends Randomised implements DiscreteProcess
 	}
 
 	@Override
-	public Long next()
+	public Double next()
 	{
-		return Math.round(mean + r.nextGaussian() * variance);
+		return mean + r.nextGaussian() * variance;
 	}
 }
