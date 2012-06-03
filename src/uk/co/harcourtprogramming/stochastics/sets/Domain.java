@@ -2,8 +2,9 @@ package uk.co.harcourtprogramming.stochastics.sets;
 
 import java.util.Collection;
 import java.util.Set;
+import uk.co.harcourtprogramming.stochastics.entropy.logic.Predicate;
 
-public abstract class Domain<T> implements Set<T>
+public abstract class Domain<T> implements Set<T>, Predicate<T>
 {
 
 	@Override
@@ -57,4 +58,9 @@ public abstract class Domain<T> implements Set<T>
 		throw new UnsupportedOperationException("Domains are immutable");
 	}
 
+	@Override
+	public final boolean predicateMatches(T query)
+	{
+		return contains(query);
+	}
 }
