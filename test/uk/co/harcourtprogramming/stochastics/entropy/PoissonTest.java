@@ -1,6 +1,5 @@
 package uk.co.harcourtprogramming.stochastics.entropy;
 
-import uk.co.harcourtprogramming.stochastics.entropy.Randomised;
 import uk.co.harcourtprogramming.stochastics.entropy.implementations.Poisson;
 import java.util.Random;
 import org.junit.Test;

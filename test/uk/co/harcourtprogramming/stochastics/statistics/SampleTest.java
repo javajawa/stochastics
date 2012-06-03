@@ -1,6 +1,5 @@
 package uk.co.harcourtprogramming.stochastics.statistics;
 
-import uk.co.harcourtprogramming.stochastics.statistics.Sample;
 import org.junit.Test;
 
 /**

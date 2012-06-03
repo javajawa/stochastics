@@ -1,6 +1,5 @@
 package uk.co.harcourtprogramming.stochastics.statistics;
 
-import uk.co.harcourtprogramming.stochastics.statistics.Sample;
 import java.util.Collection;
 import java.util.Arrays;
 import org.junit.Test;

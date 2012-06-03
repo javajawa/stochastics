@@ -1,6 +1,5 @@
 package uk.co.harcourtprogramming.stochastics.entropy;
 
-import uk.co.harcourtprogramming.stochastics.entropy.DiscreteProcess;
 import uk.co.harcourtprogramming.stochastics.entropy.implementations.Poisson;
 import java.util.Collection;
 import java.util.Arrays;
