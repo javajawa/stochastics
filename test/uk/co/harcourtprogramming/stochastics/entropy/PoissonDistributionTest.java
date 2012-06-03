@@ -49,6 +49,7 @@ public class PoissonDistributionTest
 	 * Test of next method, of class Poisson.
 	 */
 	@Test
+	@SuppressWarnings("UseOfSystemOutOrSystemErr")
 	public void testDistribution()
 	{
 		DiscreteProcess instance = new Poisson(lambda);
