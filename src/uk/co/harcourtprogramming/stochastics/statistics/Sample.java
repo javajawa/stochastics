@@ -9,6 +9,8 @@ public class Sample implements Serializable, uk.co.harcourtprogramming.stochasti
 
 	private BigInteger sigma_x = BigInteger.ZERO;
 	private BigInteger sigma_x_squared = BigInteger.ZERO;
+	private int min = Integer.MAX_VALUE;
+	private int max = Integer.MIN_VALUE;
 	private long count = 0;
 
 	private final Statistic publicExport = new Statistic();
@@ -23,6 +25,8 @@ public class Sample implements Serializable, uk.co.harcourtprogramming.stochasti
 	{
 		sigma_x = sigma_x.add(BigInteger.valueOf(v));
 		sigma_x_squared = sigma_x_squared.add(BigInteger.valueOf(v).pow(2));
+		if (v > max) max = v;
+		if (v < min) min = v;
 		++count;
 	}
 
@@ -48,13 +52,13 @@ public class Sample implements Serializable, uk.co.harcourtprogramming.stochasti
 	@Override
 	public Integer sampleMinimum()
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		return min;
 	}
 
 	@Override
 	public Integer sampleMaximum()
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		return max;
 	}
 
 	public uk.co.harcourtprogramming.stochastics.statistics.Statistic<Integer> unmodifiableCopy()
