@@ -107,19 +107,19 @@ public class TimedQueueSample implements QueueStatistic
 		@Override
 		public Integer sampleMinimum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return TimedQueueSample.this.sampleMinimum();
 		}
 
 		@Override
 		public Integer sampleMaximum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return TimedQueueSample.this.sampleMaximum();
 		}
 
 		@Override
 		public void observed(Integer value)
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			throw new UnsupportedOperationException("Immutable Reference");
 		}
 
 		@Override
