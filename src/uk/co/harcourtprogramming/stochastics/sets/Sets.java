@@ -37,7 +37,7 @@ public final class Sets
 		return u;
 	}
 
-	public static Statistic<Double> getStatistics(Collection<Double> s)
+	public static Statistic<Double> getStatistics(Collection<Number> s)
 	{
 		RealsSample ret = new RealsSample();
 		for (Double d : s)
