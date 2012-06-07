@@ -10,6 +10,8 @@ public class RealsSample implements Serializable, Statistic<Double>
 	private BigDecimal sigma_x = BigDecimal.ZERO;
 	private BigDecimal sigma_x_squared = BigDecimal.ZERO;
 	private long count = 0;
+	private double max = Double.MIN_VALUE;
+	private double min = Double.MAX_VALUE;
 
 	private final Statistic publicExport = new Statistic();
 
@@ -23,6 +25,8 @@ public class RealsSample implements Serializable, Statistic<Double>
 	{
 		sigma_x = sigma_x.add(BigDecimal.valueOf(v));
 		sigma_x_squared = sigma_x_squared.add(BigDecimal.valueOf(v).pow(2));
+		if (v > max) max = v;
+		if (v < min) min = v;
 		++count;
 	}
 
@@ -48,13 +52,13 @@ public class RealsSample implements Serializable, Statistic<Double>
 	@Override
 	public Double sampleMinimum()
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		return min;
 	}
 
 	@Override
 	public Double sampleMaximum()
 	{
-		throw new UnsupportedOperationException("Not supported yet.");
+		return max;
 	}
 
 	public uk.co.harcourtprogramming.stochastics.statistics.Statistic<Double> unmodifiableCopy()
