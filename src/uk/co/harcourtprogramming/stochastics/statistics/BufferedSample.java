@@ -39,7 +39,7 @@ public class BufferedSample implements Statistic<Double>
 
 		Double displaced = buffer.add(v);
 
-		if (v == Double.NaN)
+		if (Double.isNaN(displaced))
 		{
 			++count;
 		}
