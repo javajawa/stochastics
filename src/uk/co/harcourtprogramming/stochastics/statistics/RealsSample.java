@@ -50,13 +50,13 @@ public class RealsSample implements Serializable, Statistic<Double>
 	}
 
 	@Override
-	public Double sampleMinimum()
+	public synchronized Double sampleMinimum()
 	{
 		return min;
 	}
 
 	@Override
-	public Double sampleMaximum()
+	public synchronized Double sampleMaximum()
 	{
 		return max;
 	}
@@ -89,13 +89,13 @@ public class RealsSample implements Serializable, Statistic<Double>
 		@Override
 		public Double sampleMinimum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return RealsSample.this.sampleMinimum();
 		}
 
 		@Override
 		public Double sampleMaximum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return RealsSample.this.sampleMaximum();
 		}
 
 		@Override

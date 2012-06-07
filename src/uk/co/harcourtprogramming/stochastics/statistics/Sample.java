@@ -50,13 +50,13 @@ public class Sample implements Serializable, uk.co.harcourtprogramming.stochasti
 	}
 
 	@Override
-	public Integer sampleMinimum()
+	public synchronized Integer sampleMinimum()
 	{
 		return min;
 	}
 
 	@Override
-	public Integer sampleMaximum()
+	public synchronized Integer sampleMaximum()
 	{
 		return max;
 	}
@@ -89,13 +89,13 @@ public class Sample implements Serializable, uk.co.harcourtprogramming.stochasti
 		@Override
 		public Integer sampleMinimum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return Sample.this.sampleMinimum();
 		}
 
 		@Override
 		public Integer sampleMaximum()
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			return Sample.this.sampleMaximum();
 		}
 
 		@Override
