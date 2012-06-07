@@ -1,4 +1,4 @@
-package uk.co.harcourtprogramming.stochastics.maps;
+package uk.co.harcourtprogramming.stochastics.helpers;
 
 import java.util.Map;
 import java.util.TreeMap;

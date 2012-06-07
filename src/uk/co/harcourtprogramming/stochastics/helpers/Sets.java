@@ -1,9 +1,12 @@
-package uk.co.harcourtprogramming.stochastics.sets;
+package uk.co.harcourtprogramming.stochastics.helpers;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import uk.co.harcourtprogramming.stochastics.sets.ContinuousDoubleRange;
+import uk.co.harcourtprogramming.stochastics.sets.IntRange;
+import uk.co.harcourtprogramming.stochastics.sets.Range;
 import uk.co.harcourtprogramming.stochastics.statistics.RealsSample;
 import uk.co.harcourtprogramming.stochastics.statistics.Statistic;
 
