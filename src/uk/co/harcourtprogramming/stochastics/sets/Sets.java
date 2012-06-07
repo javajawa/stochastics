@@ -40,8 +40,8 @@ public final class Sets
 	public static Statistic<Double> getStatistics(Collection<Number> s)
 	{
 		RealsSample ret = new RealsSample();
-		for (Double d : s)
-			ret.observed(d);
+		for (Number d : s)
+			ret.observed(d.doubleValue());
 
 		return ret.unmodifiableCopy();
 	}
