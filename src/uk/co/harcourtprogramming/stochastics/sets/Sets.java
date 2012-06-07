@@ -3,6 +3,7 @@ package uk.co.harcourtprogramming.stochastics.sets;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import uk.co.harcourtprogramming.stochastics.statistics.RealsSample;
 import uk.co.harcourtprogramming.stochastics.statistics.Statistic;
 
@@ -44,5 +45,10 @@ public final class Sets
 			ret.observed(d.doubleValue());
 
 		return ret.unmodifiableCopy();
+	}
+
+	public static <T extends Comparable<? super T>> TreeSet<T> newTreeSet()
+	{
+		return new TreeSet<T>();
 	}
 }
