@@ -23,6 +23,8 @@ public class RealsSample implements Serializable, Statistic<Double>
 	@Override
 	public synchronized void observed(Double v)
 	{
+		if (v.isInfinite()) throw new IllegalArgumentException("Infinite sample");
+		if (v.isNaN()) throw new IllegalArgumentException("NaN sample");
 		sigma_x = sigma_x.add(BigDecimal.valueOf(v));
 		sigma_x_squared = sigma_x_squared.add(BigDecimal.valueOf(v).pow(2));
 		if (v > max) max = v;
