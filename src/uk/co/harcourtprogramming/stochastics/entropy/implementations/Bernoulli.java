@@ -103,4 +103,10 @@ public class Bernoulli extends Randomised implements DiscreteProcess, DiscreteDi
 		return Double.parseDouble(d.toString());
 	}
 
+	@Override
+	public double mean()
+	{
+		return trials * p;
+	}
+
 }

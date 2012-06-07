@@ -27,4 +27,10 @@ public class FilteredDiscreteProcess implements DiscreteProcess
 		return n;
 	}
 
+	@Override
+	public double mean()
+	{
+		return entropySource.mean();
+	}
+
 }

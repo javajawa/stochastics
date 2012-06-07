@@ -7,11 +7,13 @@ import uk.co.harcourtprogramming.stochastics.entropy.Randomised;
 public class Poisson extends Randomised implements DiscreteProcess
 {
 	private final double L;
+	private final double lambda;
 
 	public Poisson(double lambda, Random r)
 	{
 		super(r);
 		if (lambda <= 0) throw new IllegalArgumentException("Lambda must be a positive number");
+		this.lambda = lambda;
 		this.L = Math.exp(-lambda);
 	}
 
@@ -32,5 +34,11 @@ public class Poisson extends Randomised implements DiscreteProcess
 		long k = 0; double p = 1;
 		while ((p *= r.nextDouble()) > L) ++k;
 		return k;
+	}
+
+	@Override
+	public double mean()
+	{
+		return lambda;
 	}
 }

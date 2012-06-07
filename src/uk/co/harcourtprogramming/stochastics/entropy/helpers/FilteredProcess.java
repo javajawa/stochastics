@@ -27,4 +27,10 @@ public class FilteredProcess implements Process
 		return n;
 	}
 
+	@Override
+	public double mean()
+	{
+		return entropySource.mean();
+	}
+
 }

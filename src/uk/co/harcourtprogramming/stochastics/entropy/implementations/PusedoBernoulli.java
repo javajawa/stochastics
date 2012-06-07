@@ -9,6 +9,7 @@ import uk.co.harcourtprogramming.stochastics.entropy.DiscreteProcess;
 public class PusedoBernoulli implements DiscreteProcess
 {
 	public final long n;
+	private final double mean;
 	private final Gaussian inner;
 
 	public PusedoBernoulli(long trials, double p, Random r)
@@ -16,6 +17,7 @@ public class PusedoBernoulli implements DiscreteProcess
 		if (p < 0 || p > 1) throw new IllegalArgumentException("P must be betweeen 0 and 1");
 		inner = new Gaussian(trials * p, trials * p * (1-p), r);
 		this.n = trials;
+		this.mean = trials * p;
 	}
 
 	@Override
@@ -25,5 +27,11 @@ public class PusedoBernoulli implements DiscreteProcess
 		while (l < 0 || l > n)
 			l = inner.next().longValue();
 		return l;
+	}
+
+	@Override
+	public double mean()
+	{
+		return this.mean;
 	}
 }

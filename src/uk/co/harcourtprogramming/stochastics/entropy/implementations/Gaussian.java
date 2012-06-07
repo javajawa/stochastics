@@ -31,4 +31,10 @@ public class Gaussian extends Randomised implements Process
 	{
 		return mean + r.nextGaussian() * variance;
 	}
+
+	@Override
+	public double mean()
+	{
+		return mean;
+	}
 }
