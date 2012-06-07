@@ -1,7 +1,10 @@
 package uk.co.harcourtprogramming.stochastics.sets;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import uk.co.harcourtprogramming.stochastics.statistics.RealsSample;
+import uk.co.harcourtprogramming.stochastics.statistics.Statistic;
 
 public final class Sets
 {
@@ -32,5 +35,14 @@ public final class Sets
 		u.retainAll(b);
 
 		return u;
+	}
+
+	public static Statistic<Double> getStatistics(Collection<Double> s)
+	{
+		RealsSample ret = new RealsSample();
+		for (Double d : s)
+			ret.observed(d);
+
+		return ret.unmodifiableCopy();
 	}
 }
