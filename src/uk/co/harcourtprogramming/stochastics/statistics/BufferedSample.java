@@ -21,7 +21,6 @@ public class BufferedSample implements Statistic<Double>
 	public BufferedSample(int bufferLength)
 	{
 		buffer = new ArrayQueue<Double>(bufferLength, Double.NaN);
-		count = bufferLength;
 	}
 
 	@Override
