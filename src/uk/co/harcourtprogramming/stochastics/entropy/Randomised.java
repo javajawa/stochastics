@@ -12,7 +12,7 @@ public abstract class Randomised
 		this.r = r;
 	}
 
-	Random getRandom()
+	public Random getRandom()
 	{
 		return r;
 	}
